@@ -1,19 +1,36 @@
 import React from 'react';
+import connect from 'react-redux';
+import {Link, withRouter} from 'react-router-dom';
 
 
 
-function Nav() {
-    
 
-    return (
-        
-
-        <div>
-            <button onClick={() => this.goToHome('../Dashboard')}>Home</button>
-            <button>New Post</button>
-            <button>Logout</button>
-        </div>
-    )
+function Nav(props) {
+    if(props.location.pathname !== '/'){
+        return (
+            <div>
+            <Link className="home" to='/dashboard'>
+            <span>Dashboard</span>
+            </Link>
+            <Link className="new-post" to='/post'>
+            <span>New Post</span>
+            </Link>
+            <Link className="logout" to='/'>
+            <span>Logout</span>
+            </Link>
+            </div>
+        )
+ }else{
+     return null;
+ }
 }
 
-export default Nav;
+
+
+const mapStateToProps = (state) =>{
+    return {
+
+    }
+}
+
+export default withRouter(Nav);

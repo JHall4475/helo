@@ -22,8 +22,20 @@ registerNewUser(){
     })
     .then((response) => {
         console.log(response.data)
-        // this.goToDashboard('../Dashboard')
+        this.props.history.push('/dashboard')
         //need to figure out the nav back to dashboard
+    })
+}
+
+login(){
+    axios.post(`http://localhost:8080/api/login`, {
+        username: this.state.username,
+        password: this.state.password
+    })
+    .then((response) => {
+        console.log(response.data)
+        this.props.history.push('/dashboard')
+        // need to navigate to the dashboard view
     })
 }
 
@@ -52,7 +64,7 @@ registerNewUser(){
                 ></input>
                 <br></br>
 
-                <button>Login</button>
+                <button onClick={() => this.login()}>Login</button>
                 <button onClick={() => this.registerNewUser()}>Register</button>
             </div>
         )

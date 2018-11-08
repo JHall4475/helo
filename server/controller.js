@@ -20,24 +20,29 @@ module.exports = {
         })
     },
     loginUser: (req, res) => {
-        const db = req.app.get('db')
+        const db = req.app.get('db');
+        console.log(req.body)
         db.get_user([req.body.username])
-        .then( (user) => {
+        .then( (user => {
+            console.log('user', user)
             bcrypt.compare(req.body.password, user[0].password, function(err, isCorrectPassword) {
                 if (err) {
+                    console.log('error')
                     return res.send('Error:', err)
                 }
                 if(isCorrectPassword){
-                    req.session.user = user[0]
+                    console.log('correct')
                     res.send('Login Successful')
                 }
                 else{
+                    console.log('else')
                     res.send('Emaill or Password is wrong')
                 }
             })
-        })
+        }))
         .catch((err) => {
+            console.log('Database error', err)
             res.status(500).send(err)
         })
-    })
+    }
  }
