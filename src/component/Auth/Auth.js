@@ -23,7 +23,7 @@ registerNewUser(){
     .then((response) => {
         console.log(response.data)
         this.props.history.push('/dashboard')
-        //need to figure out the nav back to dashboard
+        
     })
 }
 
@@ -33,15 +33,12 @@ login(){
         password: this.state.password
     })
     .then((response) => {
-        console.log(response.data)
         this.props.history.push('/dashboard')
-        // need to navigate to the dashboard view
+        
     })
 }
 
-// goToDashboard(path){
-//     this.props.history.push(path);
-// }
+
 
 
 
